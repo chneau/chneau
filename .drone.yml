@@ -9,4 +9,3 @@ pipeline:
       - go get -v
       - go build
       - env
-    secrets: [ docker_username, docker_password ]
