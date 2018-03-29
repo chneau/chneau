@@ -20,6 +20,8 @@ pipeline:
         - pull_request
   publish:
     image: plugins/docker
+    username: ${DOCKER_USERNAME}
+    password: ${DOCKER_PASSWORD}
     email: octocat@catmail.com
     repo: chneau/chneau
     tag:
