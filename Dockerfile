@@ -2,7 +2,7 @@ FROM golang:latest
 WORKDIR /go/src/github.com/chneau/chneau
 COPY . .
 
-RUN go get -u -v
+RUN go get -v
 RUN go build -o /app
 
 FROM scratch
