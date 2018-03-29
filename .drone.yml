@@ -5,11 +5,9 @@ workspace:
 pipeline:
   build:
     image: golang
-    environment:
-      - CGO_ENABLED=1
     commands:
       - go get
-      - go build -a -ldflags '-s -w -extldflags "-static"' -o app
+      - CGO_ENABLED=1 go build -o app -a -ldflags '-s -w -extldflags "-static"'
     when:
       branch:
         - master
