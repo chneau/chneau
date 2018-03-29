@@ -3,13 +3,10 @@ workspace:
   path: src/github.com/chneau/chneau
 
 pipeline:
-  deps:
-    image: golang
-    commands:
-      - go get -v
   build:
     image: golang
     commands:
+      - go get -v
       - go build
   check:
     image: alpine
