@@ -5,8 +5,6 @@ workspace:
 pipeline:
   publish:
     image: plugins/docker
-    username: ${docker_username}
-    password: ${docker_password}
     repo: chneau/chneau
     tag:
       - latest
