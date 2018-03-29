@@ -21,13 +21,10 @@ pipeline:
     image: plugins/docker
     username: ${docker_username}
     password: ${docker_password}
-    email: charlesnowow@gmail.com
     repo: chneau/chneau
     tag:
       - latest
     file: Dockerfile
-    environment:
-      - DOCKER_LAUNCH_DEBUG=true
     secrets: [docker_username, docker_password]
     when:
       branch:
