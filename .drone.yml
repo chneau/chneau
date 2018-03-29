@@ -5,7 +5,31 @@ workspace:
 pipeline:
   build:
     image: golang
+    environment:
+      - CGO_ENABLED=1
     commands:
       - go get
       - go build
       - go test
+    when:
+      branch:
+        - master
+        - develop
+      event:
+        - push
+        - pull_request
+  publish:
+    image: plugins/docker
+    email: octocat@catmail.com
+    repo: chneau/chneau
+    tag:
+      - latest
+    file: Dockerfile
+    environment:
+      - DOCKER_LAUNCH_DEBUG=true
+    secrets: [docker_username, docker_password]
+    when:
+      branch:
+        - master
+      event:
+        - push
