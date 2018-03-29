@@ -9,8 +9,7 @@ pipeline:
       - CGO_ENABLED=1
     commands:
       - go get
-      - go build
-      - go test
+      - go build -a -ldflags '-s -w -extldflags "-static"' -o app
     when:
       branch:
         - master
@@ -18,11 +17,13 @@ pipeline:
       event:
         - push
         - pull_request
+
+
   publish:
     image: plugins/docker
-    username: ${DOCKER_USERNAME}
-    password: ${DOCKER_PASSWORD}
-    email: octocat@catmail.com
+    username: ${docker_username}
+    password: ${docker_password}
+    email: charlesnowow@gmail.com
     repo: chneau/chneau
     tag:
       - latest
