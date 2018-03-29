@@ -8,5 +8,5 @@ pipeline:
     repo: chneau/chneau
     tag:
       - latest
-    file: Dockerfile
+    pull-image: false
     secrets: [docker_username, docker_password]
