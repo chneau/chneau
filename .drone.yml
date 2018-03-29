@@ -3,13 +3,6 @@ workspace:
   path: src/github.com/chneau/chneau
 
 pipeline:
-  build:
-    image: golang
-    commands:
-      - go get
-      - go build
-
-
   publish:
     image: plugins/docker
     username: ${docker_username}
