@@ -1,0 +1,8 @@
+{
+    "short_name": "chneau",
+    "name": "Charles Neau",
+    "background_color": "#212529",
+    "theme_color": "#212529",
+    "display": "standalone",
+    "orientation": "portrait"
+}
