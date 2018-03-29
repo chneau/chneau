@@ -3,12 +3,11 @@ workspace:
   path: src/github.com/chneau/chneau
 
 pipeline:
-  publish:
-    image: plugins/docker
-    repo: chneau/chneau
-    environment:
-      - PLUGIN_PULL_IMAGE=0
-    tag:
-      - latest
-    pull-image: false
-    secrets: [docker_username, docker_password]
+  deps:
+    image: golang
+    commands:
+      - go get -v
+  build:
+    image: golang
+    commands:
+      - go build
