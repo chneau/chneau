@@ -8,13 +8,6 @@ pipeline:
     commands:
       - go get
       - go build
-    when:
-      branch:
-        - master
-        - develop
-      event:
-        - push
-        - pull_request
 
 
   publish:
@@ -26,8 +19,3 @@ pipeline:
       - latest
     file: Dockerfile
     secrets: [docker_username, docker_password]
-    when:
-      branch:
-        - master
-      event:
-        - push
