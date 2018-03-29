@@ -5,9 +5,12 @@ COPY . .
 ENV CGO_ENABLED=0
 RUN go get -v
 RUN go build -o /app -ldflags '-s -w -extldflags "-static"'
-# RUN go build -o /app -a -ldflags '-s -w -extldflags "-static"'
+
+FROM chneau/upx:latest
+COPY --from=0 /app /app
+RUN upx /app 
 
 FROM scratch
-COPY --from=0 /app /app
+COPY --from=1 /app /app
 COPY public /public
 ENTRYPOINT ["/app"]
