@@ -1,6 +1,8 @@
 FROM golang:latest
 WORKDIR /go/src/github.com/chneau/chneau
 COPY . .
+
+RUN go get
 RUN go build -o /app
 
 FROM scratch
