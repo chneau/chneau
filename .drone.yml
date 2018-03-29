@@ -6,6 +6,8 @@ pipeline:
   publish:
     image: plugins/docker
     repo: chneau/chneau
+    environment:
+      - PLUGIN_PULL_IMAGE=0
     tag:
       - latest
     pull-image: false
