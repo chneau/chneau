@@ -11,3 +11,7 @@ pipeline:
     image: golang
     commands:
       - go build
+  check:
+    image: alpine
+    commands:
+      - ls -la
