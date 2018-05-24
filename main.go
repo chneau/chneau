@@ -43,6 +43,7 @@ func runServer(server *http.Server) {
 }
 
 func main() {
+
 	r := gin.Default()
 
 	r.Use(gin.Recovery())
