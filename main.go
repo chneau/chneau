@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
+	"runtime"
 
 	"github.com/gin-contrib/static"
 	"github.com/gin-gonic/gin"
@@ -13,6 +14,9 @@ import (
 func init() {
 	log.SetFlags(log.Ldate | log.Ltime | log.Lshortfile)
 	gin.SetMode(gin.ReleaseMode)
+	if runtime.GOOS == "windows" {
+		gin.DisableConsoleColor()
+	}
 }
 
 func gracefulExit(server *http.Server) {
@@ -24,6 +28,7 @@ func gracefulExit(server *http.Server) {
 		if err := server.Close(); err != nil {
 			log.Fatal("Server Close:", err)
 		}
+		os.Exit(0)
 	}()
 }
 
@@ -51,6 +56,7 @@ func main() {
 		Addr:    ":8080",
 		Handler: r,
 	}
+	log.Println("http://localhost:8080")
 	gracefulExit(server)
 	runServer(server)
 }
