@@ -3,31 +3,32 @@ checkNewVersion = false
 defaultEntryPoints = ["http", "https"]
 
 [web]
-address = ":8080"
+  address = ":8080"
 
 [entryPoints]
-[entryPoints.http]
-address = ":80"
-# [entryPoints.http.redirect]
-# entryPoint = "https"
-[entryPoints.https]
-address = ":443"
-[entryPoints.https.tls]
+  [entryPoints.http]
+    address = ":80"
+    [entryPoints.http.redirect]
+      entryPoint = "https"
+    [entryPoints.https]
+      address = ":443"
+      [entryPoints.https.tls]
 
 [acme]
-email = "charlesnowow@gmail.com"
-storage = "acme.json"
-OnHostRule = true
-caServer = "https://acme-staging.api.letsencrypt.org/directory"
-entryPoint = "https"
-[acme.dnsChallenge]
-provider = "digitalocean"
-[acme.httpChallenge]
-entryPoint = "http"
+  email = "charlesnowow@gmail.com"
+  entryPoint = "https"
+  OnHostRule = true
+  storage = "acme.json"
+  # caServer = "https://acme-staging.api.letsencrypt.org/directory"
+  [acme.dnsChallenge]
+    delayBeforeCheck = 0
+    provider = "digitalocean"
+  # [acme.httpChallenge]
+    # entryPoint = "http"
 
 
 [docker]
-endpoint = "unix:///var/run/docker.sock"
-watch = true
-exposedbydefault = false
-swarmmode = true
+  endpoint = "unix:///var/run/docker.sock"
+  watch = true
+  exposedbydefault = false
+  swarmmode = true
