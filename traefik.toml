@@ -17,7 +17,7 @@ defaultEntryPoints = ["http", "https"]
 [acme]
   email = "charlesnowow@gmail.com"
   entryPoint = "https"
-  OnHostRule = true
+  OnHostRule = false
   storage = "acme.json"
   acmeLogging = true
   # caServer = "https://acme-staging.api.letsencrypt.org/directory"
@@ -26,6 +26,9 @@ defaultEntryPoints = ["http", "https"]
   [acme.dnsChallenge]
     provider = "digitalocean"
     delayBeforeCheck = 0
+  [[acme.domains]]
+    main = "*.chno.xyz" #this one gets the certificate
+    sans = ["chno.xyz"]
   # [acme.httpChallenge]
     # entryPoint = "http"
 
