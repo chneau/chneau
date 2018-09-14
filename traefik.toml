@@ -1,4 +1,4 @@
-logLevel = "INFO"
+# logLevel = "INFO"
 checkNewVersion = false
 defaultEntryPoints = ["http", "https"]
 
