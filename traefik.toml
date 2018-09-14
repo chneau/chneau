@@ -1,4 +1,4 @@
-logLevel = "DEBUG"
+logLevel = "INFO"
 checkNewVersion = false
 defaultEntryPoints = ["http", "https"]
 
@@ -26,9 +26,6 @@ defaultEntryPoints = ["http", "https"]
   [acme.dnsChallenge]
     provider = "digitalocean"
     delayBeforeCheck = 0
-[[acme.domains]]
-  main = "*.chno.xyz"
-  sans = ["chno.zyz"]
   # [acme.httpChallenge]
     # entryPoint = "http"
 

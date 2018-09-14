@@ -36,6 +36,7 @@ docker-down:
 	docker stack down chneau
 
 proxy-prepare:
+	rm -rf /containers/traefik
 	mkdir -p /containers/traefik
 	touch /containers/traefik/acme.json
 	cp -rf traefik.toml /containers/traefik/
