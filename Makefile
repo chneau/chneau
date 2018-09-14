@@ -16,5 +16,21 @@ clean:
 	rm -rf bin
 
 deps:
-	go get -d -u -v ./...
+	govendor init
+	govendor add +e
+	govendor update +v
 
+dev:
+	go get -u -v github.com/kardianos/govendor
+
+docker-build:
+	docker build -t chneau .
+
+docker-up:
+	docker stack up chneau --compose-file docker-compose.yml
+
+docker-update:
+	docker service update --force chneau_chneau
+
+docker-down:
+	docker stack down chneau

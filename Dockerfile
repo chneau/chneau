@@ -1,16 +1,10 @@
-FROM golang:latest
-WORKDIR /go/src/github.com/chneau/chneau
-COPY . .
+# build stage
+FROM golang:alpine AS build-env
+ENV BASE /go/src/github.com/chneau/chneau
+ADD . $BASE
+RUN cd $BASE && CGO_ENABLED=0 go build -o /chneau -ldflags '-s -w -extldflags "-static"'
 
-ENV CGO_ENABLED=0
-RUN go get -v
-RUN go build -o /app -ldflags '-s -w -extldflags "-static"'
-
-FROM chneau/upx:latest
-COPY --from=0 /app /app
-RUN upx /app 
-
-FROM scratch
-COPY --from=1 /app /app
-COPY public /public
-ENTRYPOINT ["/app"]
+FROM alpine AS prod-ready
+COPY --from=build-env /chneau /chneau
+RUN mkdir /data
+ENTRYPOINT [ "/chneau" ]
