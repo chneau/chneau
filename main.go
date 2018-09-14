@@ -12,7 +12,8 @@ import (
 )
 
 func init() {
-	log.SetFlags(log.Ldate | log.Ltime | log.Lshortfile)
+	log.SetPrefix("[CHNEAU] ")
+	log.SetFlags(log.LstdFlags | log.Lshortfile)
 	gin.SetMode(gin.ReleaseMode)
 	if runtime.GOOS == "windows" {
 		gin.DisableConsoleColor()
@@ -28,7 +29,10 @@ func init() {
 
 func main() {
 	r := gin.Default()
-
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8000"
+	}
 	r.Use(static.Serve("/", static.LocalFile("./public", true)))
 
 	bashrc := "https://raw.githubusercontent.com/chneau/usefulCommands/master/.bashrc"
@@ -44,7 +48,10 @@ func main() {
 	r.GET("/b", func(c *gin.Context) {
 		c.Redirect(http.StatusTemporaryRedirect, bashrc)
 	})
+	r.GET("/health", func(c *gin.Context) {
+		c.JSON(200, nil)
+	})
 
-	log.Println("running on http://localhost:8080")
-	r.Run(":8080")
+	log.Println("running on http://localhost:" + port)
+	r.Run(":" + port)
 }

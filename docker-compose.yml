@@ -4,6 +4,8 @@ services:
     image: chneau
     networks:
       - app
+    ports:
+      - "8000:8000"
     deploy:
       mode: replicated
       replicas: 4
@@ -11,11 +13,11 @@ services:
         condition: any
       update_config:
         order: start-first
-        delay: 1s
-        parallelism: 1
+        delay: 0s
+        parallelism: 2
     healthcheck:
       test: wget --quiet --tries=1 --spider http://localhost:$$PORT/health || exit 1
-      interval: 15s
+      interval: 5s
       timeout: 3s
       retries: 4
       start_period: 5s
