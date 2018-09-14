@@ -16,7 +16,7 @@ defaultEntryPoints = ["http", "https"]
   entryPoint = "https"
   storage = "acme.json"
   acmeLogging = true
-  caServer = "https://acme-staging-v02.api.letsencrypt.org/directory"
+  # caServer = "https://acme-staging-v02.api.letsencrypt.org/directory"
   [acme.dnsChallenge]
     provider = "digitalocean"
   [[acme.domains]]
