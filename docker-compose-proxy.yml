@@ -10,7 +10,7 @@ services:
       labels:
         - traefik.enable=true
         - traefik.frontend.rule=Host:traefik.chno.xyz
-        - traefik.docker.network=test_traefik_net
+        - traefik.docker.network=chneau_web
         - traefik.port=8080
         - traefik.backend=proxy
     volumes:
