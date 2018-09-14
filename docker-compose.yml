@@ -1,11 +1,159 @@
 version: '3.7'
 services:
-  chneau:
-    image: chneau
+
+  drone-server:
+    image: drone/drone:0.8.5
+    volumes:
+      - /containers/drone:/var/lib/drone
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: any
+      labels:
+        - traefik.enable=true
+        - traefik.frontend.rule=Host:drone.chneau.xyz
+        - traefik.docker.network=chneau_web
+        - traefik.port=8000
+        - traefik.backend=drone-server
+      placement:
+        constraints:
+          - node.role == manager
+    environment:
+      - DRONE_OPEN=false
+      - DRONE_HOST=http://drone.chneau.xyz
+      - DRONE_ADMIN=chneau
+      - DRONE_GITHUB=true
+      - DRONE_GITHUB_CLIENT=${DRONE_GITHUB_CLIENT:?}
+      - DRONE_GITHUB_SECRET=${DRONE_GITHUB_SECRET:?}
+      - DRONE_SECRET=${DRONE_SECRET:?}
     networks:
       - web
-    ports:
-      - "8000:8000"
+
+
+  drone-agent:
+    image: drone/agent:0.8.5
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: any
+      labels:
+        - traefik.enable=false
+    environment:
+      - DRONE_SERVER=drone-server:9000
+      - DRONE_SECRET=${DRONE_SECRET:?}
+    networks:
+      - web
+
+  draw:
+    image: chneau/draw:latest
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: any
+      labels:
+        - traefik.enable=true
+        - traefik.frontend.rule=Host:draw.chneau.xyz
+        - traefik.docker.network=chneau_web
+        - traefik.port=3000
+        - traefik.backend=draw
+    environment:
+      PORT: "3000"
+    networks:
+      - web
+
+  registry:
+    image: registry
+    volumes:
+      - /containers/registry:/var/lib/registry
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: any
+      labels:
+        - traefik.enable=true
+        - traefik.frontend.rule=Host:registry.chneau.xyz
+        - traefik.docker.network=chneau_web
+        - traefik.port=5000
+        - traefik.frontend.auth.basic=${USER_PASSWD}
+        - traefik.backend=registry
+      placement:
+        constraints:
+          - node.role == manager
+    environment:
+      - REGISTRY_STORAGE_DELETE_ENABLED=true
+    networks:
+      - web
+
+  bow:
+    image: evedel/bow:alpine-latest
+    volumes:
+      - /containers/bow:/var/lib/bow
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: any
+      labels:
+        - traefik.enable=true
+        - traefik.frontend.rule=Host:bow.chneau.xyz
+        - traefik.docker.network=chneau_web
+        - traefik.port=19808
+        - traefik.frontend.auth.basic=${USER_PASSWD:?}
+        - traefik.backend=bow
+    networks:
+      - web
+
+  portainer:
+    image: portainer/portainer
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /containers/portainer:/data
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: any
+      labels:
+        - traefik.enable=true
+        - traefik.frontend.rule=Host:portainer.chneau.xyz
+        - traefik.docker.network=chneau_web
+        - traefik.port=9000
+        - traefik.frontend.auth.basic=${USER_PASSWD:?}
+        - traefik.backend=portainer
+    networks:
+      - web
+
+  netdata:
+    image: titpetric/netdata
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: any
+      labels:
+        - traefik.enable=true
+        - traefik.frontend.rule=Host:netdata.chneau.xyz
+        - traefik.docker.network=chneau_web
+        - traefik.port=19999
+        - traefik.frontend.auth.basic=${USER_PASSWD:?}
+        - traefik.backend=netdata
+    networks:
+      - web
+
+  chneau:
+    image: chneau/chneau
+    networks:
+      - web
     deploy:
       mode: replicated
       replicas: 4
