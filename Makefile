@@ -50,3 +50,7 @@ proxy-update: proxy-prepare
 
 proxy-down:
 	docker stack down proxy
+
+down: proxy-down docker-down
+
+up: docker-up proxy-up
