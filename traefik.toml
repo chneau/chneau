@@ -20,8 +20,8 @@ defaultEntryPoints = ["http", "https"]
   [acme.dnsChallenge]
     provider = "digitalocean"
   [[acme.domains]]
-    main = "*.chno.xyz"
-    sans = ["chno.xyz"]
+    main = "*.chneau.xyz"
+    sans = ["chneau.xyz"]
 
 
 [docker]

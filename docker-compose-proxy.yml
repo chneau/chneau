@@ -9,7 +9,7 @@ services:
         condition: any
       labels:
         - traefik.enable=true
-        - traefik.frontend.rule=Host:traefik.chno.xyz
+        - traefik.frontend.rule=Host:traefik.chneau.xyz
         - traefik.docker.network=chneau_web
         - traefik.port=8080
         - traefik.backend=proxy

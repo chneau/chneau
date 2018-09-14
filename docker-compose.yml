@@ -17,7 +17,7 @@ services:
         parallelism: 2
       labels:
         - traefik.enable=true
-        - traefik.frontend.rule=Host:chno.xyz
+        - traefik.frontend.rule=Host:chneau.xyz
         - traefik.docker.network=chneau_web
         - traefik.port=8000
         - traefik.backend=web
