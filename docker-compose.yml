@@ -21,7 +21,7 @@ services:
           - node.role == manager
     environment:
       - DRONE_OPEN=false
-      - DRONE_HOST=http://drone.chneau.xyz
+      - DRONE_HOST=https://drone.chneau.xyz
       - DRONE_ADMIN=chneau
       - DRONE_GITHUB=true
       - DRONE_GITHUB_CLIENT=${DRONE_GITHUB_CLIENT:?}
