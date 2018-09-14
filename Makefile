@@ -34,3 +34,18 @@ docker-update:
 
 docker-down:
 	docker stack down chneau
+
+proxy-prepare:
+	mkdir -p /containers/traefik
+	touch /containers/traefik/acme.json
+	cp -rf traefik.toml /containers/traefik/
+	chmod 600 /containers/traefik/acme.json
+
+proxy-up: proxy-prepare
+	docker stack up proxy -c docker-compose-proxy.yml
+
+proxy-update: proxy-prepare
+	docker service update --force proxy_proxy
+
+proxy-down:
+	docker stack down proxy

@@ -1,0 +1,29 @@
+version: '3.7'
+services:
+  proxy:
+    image: traefik:alpine
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: any
+      labels:
+        - traefik.enable=true
+        - traefik.frontend.rule=Host:traefik.chno.xyz
+        - traefik.docker.network=test_traefik_net
+        - traefik.port=8080
+        - traefik.backend=proxy
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /containers/traefik/traefik.toml:/traefik.toml
+      - /containers/traefik/acme.json:/acme.json
+    environment:
+      - DO_AUTH_TOKEN=${DO_AUTH_TOKEN:?}
+    ports:
+      - 80:80
+      - 443:443
+    networks:
+      - traefik_net
+networks:
+  chneau_web:
+    external: true

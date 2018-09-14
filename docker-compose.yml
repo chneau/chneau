@@ -3,7 +3,7 @@ services:
   chneau:
     image: chneau
     networks:
-      - app
+      - web
     ports:
       - "8000:8000"
     deploy:
@@ -15,6 +15,12 @@ services:
         order: start-first
         delay: 0s
         parallelism: 2
+      labels:
+        - traefik.enable=true
+        - traefik.frontend.rule=Host:chno.xyz
+        - traefik.docker.network=test_traefik_net
+        - traefik.port=8000
+        - traefik.backend=web
     healthcheck:
       test: wget --quiet --tries=1 --spider http://localhost:$$PORT/health || exit 1
       interval: 5s
@@ -24,4 +30,4 @@ services:
     environment:
       PORT: ${PORT:-8000}
 networks:
-  app:
+  web:
