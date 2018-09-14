@@ -1,4 +1,4 @@
-logLevel = "INFO"
+logLevel = "DEBUG"
 checkNewVersion = false
 defaultEntryPoints = ["http", "https"]
 
@@ -8,8 +8,8 @@ defaultEntryPoints = ["http", "https"]
 [entryPoints]
   [entryPoints.http]
     address = ":80"
-    [entryPoints.http.redirect]
-      entryPoint = "https"
+    # [entryPoints.http.redirect]
+      # entryPoint = "https"
     [entryPoints.https]
       address = ":443"
       [entryPoints.https.tls]
@@ -21,10 +21,14 @@ defaultEntryPoints = ["http", "https"]
   storage = "acme.json"
   acmeLogging = true
   # caServer = "https://acme-staging.api.letsencrypt.org/directory"
-  caServer = "https://acme-v02.api.letsencrypt.org/directory"
+  # caServer = "https://acme-v02.api.letsencrypt.org/directory"
+  caServer = "https://acme-staging-v02.api.letsencrypt.org/directory"
   [acme.dnsChallenge]
-    delayBeforeCheck = 0
     provider = "digitalocean"
+    delayBeforeCheck = 0
+[[acme.domains]]
+  main = "*.chno.xyz"
+  sans = ["chno.zyz"]
   # [acme.httpChallenge]
     # entryPoint = "http"
 
