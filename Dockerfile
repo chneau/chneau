@@ -9,5 +9,4 @@ FROM alpine AS prod-ready
 ARG BASE
 COPY --from=build-env $BASE/public /public
 COPY --from=build-env /chneau /chneau
-RUN mkdir /data
 ENTRYPOINT [ "/chneau" ]
