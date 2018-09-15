@@ -32,6 +32,12 @@ docker-up:
 docker-update:
 	docker service update --force chneau_chneau
 
+docker-uninst:
+	docker rm --force chneau || true
+
+docker-inst:
+	docker run --name chneau -d --restart always -e PORT=80 --net=host chneau
+
 docker-down:
 	docker stack down chneau
 
