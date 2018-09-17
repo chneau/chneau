@@ -8,7 +8,8 @@ Le website
 Test this thing:  
 ```bash
 docker run \
--d --restart=always \
+-d \
+--restart=always \
 --hostname mail.chneau.xyz \
 --name mail \
 -p 25:25 -p 143:143 \
