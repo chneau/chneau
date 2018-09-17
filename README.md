@@ -20,9 +20,9 @@ docker run \
 -v /containers/mail/config/:/tmp/docker-mailserver/ \
 -v /etc/localtime:/etc/localtime:ro \
 -e ENABLE_SPAMASSASSIN=0 \
--e ENABLE_CLAMAV=1 \
--e ENABLE_FAIL2BAN=1 \
--e ENABLE_POSTGREY=1 \
+-e ENABLE_CLAMAV=0 \
+-e ENABLE_FAIL2BAN=0 \
+-e ENABLE_POSTGREY=0 \
 -e ONE_DIR=1 \
 -e DMS_DEBUG=0 \
 --cap-add NET_ADMIN \
