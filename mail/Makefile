@@ -7,9 +7,9 @@
 run: install
 
 uninstall:
-	docker rm --force mail
+	docker rm --force mail || true
 
-extractcerts:
+extractCerts:
 	cd /containers/traefik
 	wget https://raw.githubusercontent.com/containous/traefik/master/contrib/scripts/dumpcerts.sh && chmod +x dumpcerts.sh
 	./dumpcerts.sh acme.json ./certs/
@@ -23,10 +23,12 @@ install: uninstall
 	# -p 465:465 SSL client email submission
 	# -p 993:993 SSL IMAP client
 	# -p 995:995 SSL POP3 client
-	docker run -d --restart=always --hostname mail.chneau.xyz --name mail -p 25:25 -p 143:143 -p 587:587 -v /containers/mail/mail:/var/mail -v /containers/mail/state:/var/mail-state -v /containers/mail/config/:/tmp/docker-mailserver/ -v /etc/localtime:/etc/localtime:ro -e ONE_DIR=1 --cap-add NET_ADMIN --cap-add SYS_PTRACE tvial/docker-mailserver:latest
-
-installwithcerts: uninstall
 	docker run -d --restart=always --hostname mail.chneau.xyz --name mail -p 25:25 -p 993:993 -p 465:465 -v /containers/mail/mail:/var/mail -v /containers/mail/state:/var/mail-state -v /containers/mail/config/:/tmp/docker-mailserver/ -v /containers/traefik/certs:/certs -v /etc/localtime:/etc/localtime:ro -e SSL_TYPE=manual -e SSL_CERT_PATH=/certs/certs/*.chneau.xyz.crt -e SSL_KEY_PATH=/certs/private/*.chneau.xyz.key -e ONE_DIR=1 --cap-add NET_ADMIN --cap-add SYS_PTRACE tvial/docker-mailserver:latest
+	$(MAKE) logs
+
+installWithoutSSL: uninstall
+	docker run -d --restart=always --hostname mail.chneau.xyz --name mail -p 25:25 -p 143:143 -p 587:587 -v /containers/mail/mail:/var/mail -v /containers/mail/state:/var/mail-state -v /containers/mail/config/:/tmp/docker-mailserver/ -v /etc/localtime:/etc/localtime:ro -e ONE_DIR=1 --cap-add NET_ADMIN --cap-add SYS_PTRACE tvial/docker-mailserver:latest
+	$(MAKE) logs
 
 logs:
 	docker logs -f mail
