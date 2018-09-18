@@ -2,7 +2,7 @@
 .ONESHELL:
 .NOTPARALLEL:
 .EXPORT_ALL_VARIABLES:
-.PHONY: run install
+.PHONY: run uninstall install logs adduser
 
 run: install
 
@@ -20,6 +20,9 @@ install: uninstall
 	# -p 993:993 SSL IMAP client
 	# -p 995:995 SSL POP3 client
 	docker run -d --restart=always --hostname mail.chneau.xyz --name mail -p 25:25 -p 143:143 -p 587:587 -v /containers/mail/mail:/var/mail -v /containers/mail/state:/var/mail-state -v /containers/mail/config/:/tmp/docker-mailserver/ -v /etc/localtime:/etc/localtime:ro -e ONE_DIR=1 --cap-add NET_ADMIN --cap-add SYS_PTRACE tvial/docker-mailserver:latest
+
+logs:
+	docker logs -f mail
 
 adduser:
 	curl -o setup.sh https://raw.githubusercontent.com/tomav/docker-mailserver/master/setup.sh; chmod a+x ./setup.sh
