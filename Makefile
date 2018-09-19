@@ -24,7 +24,7 @@ dev:
 	go get -u -v github.com/kardianos/govendor
 
 docker-build:
-	docker build -t chneau/chneau .
+	docker build -t chneau/chneau:latest .
 
 docker-up:
 	docker stack up chneau --compose-file docker-compose.yml
