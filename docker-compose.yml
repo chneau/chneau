@@ -80,7 +80,7 @@ services:
         - traefik.frontend.rule=Host:registry.chneau.xyz
         - traefik.docker.network=chneau_web
         - traefik.port=5000
-        - traefik.frontend.auth.basic=${USER_PASSWD}
+        - traefik.frontend.auth.basic=${USER_PASSWD:?}
         - traefik.backend=registry
       placement:
         constraints:
@@ -104,7 +104,7 @@ services:
         - traefik.frontend.rule=Host:bow.chneau.xyz
         - traefik.docker.network=chneau_web
         - traefik.port=19808
-        - traefik.frontend.auth.basic=${USER_PASSWD:?}
+        - traefik.frontend.auth.basic=${:?:?}
         - traefik.backend=bow
     networks:
       - web
@@ -124,7 +124,7 @@ services:
         - traefik.frontend.rule=Host:portainer.chneau.xyz
         - traefik.docker.network=chneau_web
         - traefik.port=9000
-        - traefik.frontend.auth.basic=${USER_PASSWD:?}
+        - traefik.frontend.auth.basic=${:?:?}
         - traefik.backend=portainer
     networks:
       - web
@@ -145,7 +145,7 @@ services:
         - traefik.frontend.rule=Host:netdata.chneau.xyz
         - traefik.docker.network=chneau_web
         - traefik.port=19999
-        - traefik.frontend.auth.basic=${USER_PASSWD:?}
+        - traefik.frontend.auth.basic=${:?:?}
         - traefik.backend=netdata
     networks:
       - web
