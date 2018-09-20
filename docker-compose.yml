@@ -2,7 +2,7 @@ version: '3.7'
 services:
 
   drone-server:
-    image: drone/drone:0.8.5
+    image: drone/drone:0.9.0-alpha.2
     volumes:
       - /containers/drone:/var/lib/drone
     deploy:
@@ -11,28 +11,27 @@ services:
       restart_policy:
         condition: any
       labels:
-        - traefik.enable=true
-        - traefik.frontend.rule=Host:drone.chneau.xyz
-        - traefik.docker.network=chneau_web
-        - traefik.port=8000
-        - traefik.backend=drone-server
+        traefik.enable: "true"
+        traefik.frontend.rule: "Host:drone.${DOMAIN:?}"
+        traefik.docker.network: "chneau_web"
+        traefik.port: "8000"
       placement:
         constraints:
           - node.role == manager
     environment:
-      - DRONE_OPEN=false
-      - DRONE_HOST=https://drone.chneau.xyz
-      - DRONE_ADMIN=chneau
-      - DRONE_GITHUB=true
-      - DRONE_GITHUB_CLIENT=${DRONE_GITHUB_CLIENT:?}
-      - DRONE_GITHUB_SECRET=${DRONE_GITHUB_SECRET:?}
-      - DRONE_SECRET=${DRONE_SECRET:?}
+      DRONE_OPEN: "false"
+      DRONE_HOST: "https://drone.${DOMAIN:?}"
+      DRONE_ADMIN: "chneau"
+      DRONE_GITHUB: "true"
+      DRONE_GITHUB_CLIENT: "${DRONE_GITHUB_CLIENT:?}"
+      DRONE_GITHUB_SECRET: "${DRONE_GITHUB_SECRET:?}"
+      DRONE_SECRET: "${DRONE_SECRET:?}"
     networks:
       - web
 
 
   drone-agent:
-    image: drone/agent:0.8.5
+    image: drone/agent:0.9.0-alpha.2
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     deploy:
@@ -41,10 +40,10 @@ services:
       restart_policy:
         condition: any
       labels:
-        - traefik.enable=false
+        traefik.enable: "false"
     environment:
-      - DRONE_SERVER=drone-server:9000
-      - DRONE_SECRET=${DRONE_SECRET:?}
+      DRONE_SERVER: "drone-server:9000"
+      DRONE_SECRET: "${DRONE_SECRET:?}"
     networks:
       - web
 
@@ -56,11 +55,10 @@ services:
       restart_policy:
         condition: any
       labels:
-        - traefik.enable=true
-        - traefik.frontend.rule=Host:draw.chneau.xyz
-        - traefik.docker.network=chneau_web
-        - traefik.port=3000
-        - traefik.backend=draw
+        traefik.enable: "true"
+        traefik.frontend.rule: "Host:draw.${DOMAIN:?}"
+        traefik.docker.network: "chneau_web"
+        traefik.port: "3000"
     environment:
       PORT: "3000"
     networks:
@@ -76,56 +74,16 @@ services:
       restart_policy:
         condition: any
       labels:
-        - traefik.enable=true
-        - traefik.frontend.rule=Host:registry.chneau.xyz
-        - traefik.docker.network=chneau_web
-        - traefik.port=5000
-        - traefik.frontend.auth.basic=${USER_PASSWD:?}
-        - traefik.backend=registry
+        traefik.enable: "true"
+        traefik.frontend.rule: "Host:registry.${DOMAIN:?}"
+        traefik.docker.network: "chneau_web"
+        traefik.port: "5000"
+        traefik.frontend.auth.basic: "${USER_PASSWD:?}"
       placement:
         constraints:
           - node.role == manager
     environment:
-      - REGISTRY_STORAGE_DELETE_ENABLED=true
-    networks:
-      - web
-
-  bow:
-    image: evedel/bow:alpine-latest
-    volumes:
-      - /containers/bow:/var/lib/bow
-    deploy:
-      mode: replicated
-      replicas: 1
-      restart_policy:
-        condition: any
-      labels:
-        - traefik.enable=true
-        - traefik.frontend.rule=Host:bow.chneau.xyz
-        - traefik.docker.network=chneau_web
-        - traefik.port=19808
-        - traefik.frontend.auth.basic=${:?:?}
-        - traefik.backend=bow
-    networks:
-      - web
-
-  portainer:
-    image: portainer/portainer
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      - /containers/portainer:/data
-    deploy:
-      mode: replicated
-      replicas: 1
-      restart_policy:
-        condition: any
-      labels:
-        - traefik.enable=true
-        - traefik.frontend.rule=Host:portainer.chneau.xyz
-        - traefik.docker.network=chneau_web
-        - traefik.port=9000
-        - traefik.frontend.auth.basic=${:?:?}
-        - traefik.backend=portainer
+      REGISTRY_STORAGE_DELETE_ENABLED: "true"
     networks:
       - web
 
@@ -141,12 +99,11 @@ services:
       restart_policy:
         condition: any
       labels:
-        - traefik.enable=true
-        - traefik.frontend.rule=Host:netdata.chneau.xyz
-        - traefik.docker.network=chneau_web
-        - traefik.port=19999
-        - traefik.frontend.auth.basic=${:?:?}
-        - traefik.backend=netdata
+        traefik.enable: "true"
+        traefik.frontend.rule: "Host:netdata.${DOMAIN:?}"
+        traefik.docker.network: "chneau_web"
+        traefik.port: "19999"
+        traefik.frontend.auth.basic: "${USER_PASSWD:?}"
     networks:
       - web
 
@@ -156,7 +113,7 @@ services:
       - web
     deploy:
       mode: replicated
-      replicas: 4
+      replicas: 1
       restart_policy:
         condition: any
       update_config:
@@ -164,11 +121,10 @@ services:
         delay: 0s
         parallelism: 2
       labels:
-        - traefik.enable=true
-        - traefik.frontend.rule=Host:chneau.xyz
-        - traefik.docker.network=chneau_web
-        - traefik.port=8000
-        - traefik.backend=web
+        traefik.enable: "true"
+        traefik.frontend.rule: "Host:${DOMAIN:?}"
+        traefik.docker.network: "chneau_web"
+        traefik.port: "8000"
     environment:
       PORT: ${PORT:-8000}
 networks:
