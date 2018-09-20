@@ -78,7 +78,7 @@ services:
         traefik.frontend.rule: "Host:registry.${DOMAIN:?}"
         traefik.docker.network: "chneau_web"
         traefik.port: "5000"
-        traefik.frontend.auth.basic: "${USER_PASSWD:?}"
+        traefik.frontend.auth.basic.users: "${USER_PASSWD:?}"
       placement:
         constraints:
           - node.role == manager
@@ -103,7 +103,7 @@ services:
         traefik.frontend.rule: "Host:netdata.${DOMAIN:?}"
         traefik.docker.network: "chneau_web"
         traefik.port: "19999"
-        traefik.frontend.auth.basic: "${USER_PASSWD:?}"
+        traefik.frontend.auth.basic.users: "${USER_PASSWD:?}"
     networks:
       - web
 
