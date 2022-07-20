@@ -1,4 +1,4 @@
-<a href="https://github.com/chneau">
+<a>
   <img align="center" width="49%" src="./header.svg" />
   <br />
   <img align="center" width="49%" src="./repositories.svg" />
