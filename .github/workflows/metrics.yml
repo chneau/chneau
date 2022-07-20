@@ -12,7 +12,7 @@ jobs:
       - uses: lowlighter/metrics@latest
         with:
           filename: achievements.svg
-          token: ${{ secrets.METRICS_SECRET }}
+          token: ${{ secrets.METRICS_TOKEN }}
           committer_token: ${{ github.token }}
           user: ${{ github.repository_owner }}
           base: achievements
@@ -28,7 +28,7 @@ jobs:
       - uses: lowlighter/metrics@latest
         with:
           filename: header.svg
-          token: ${{ secrets.METRICS_SECRET }}
+          token: ${{ secrets.METRICS_TOKEN }}
           committer_token: ${{ github.token }}
           user: ${{ github.repository_owner }}
           template: classic
@@ -41,7 +41,7 @@ jobs:
       - uses: lowlighter/metrics@latest
         with:
           filename: acti_comm.svg
-          token: ${{ secrets.METRICS_SECRET }}
+          token: ${{ secrets.METRICS_TOKEN }}
           committer_token: ${{ github.token }}
           user: ${{ github.repository_owner }}
           template: classic
@@ -54,7 +54,7 @@ jobs:
       - uses: lowlighter/metrics@latest
         with:
           filename: iso_calender.svg
-          token: ${{ secrets.METRICS_SECRET }}
+          token: ${{ secrets.METRICS_TOKEN }}
           committer_token: ${{ github.token }}
           user: ${{ github.repository_owner }}
           template: classic
@@ -69,7 +69,7 @@ jobs:
       - uses: lowlighter/metrics@latest
         with:
           filename: github-habits.svg
-          token: ${{ secrets.METRICS_SECRET }}
+          token: ${{ secrets.METRICS_TOKEN }}
           committer_token: ${{ github.token }}
           config_timezone: ${{ env.USER_TIMEZONE }}
           user: ${{ github.repository_owner }}
@@ -87,7 +87,7 @@ jobs:
       - uses: lowlighter/metrics@latest
         with:
           filename: issue_pr_lang.svg
-          token: ${{ secrets.METRICS_SECRET }}
+          token: ${{ secrets.METRICS_TOKEN }}
           committer_token: ${{ github.token }}
           user: ${{ github.repository_owner }}
           template: classic
@@ -102,7 +102,7 @@ jobs:
       - uses: lowlighter/metrics@latest
         with:
           filename: repositories.svg
-          token: ${{ secrets.METRICS_SECRET }}
+          token: ${{ secrets.METRICS_TOKEN }}
           committer_token: ${{ github.token }}
           user: ${{ github.repository_owner }}
           template: classic
