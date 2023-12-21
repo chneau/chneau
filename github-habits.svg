@@ -195,32 +195,32 @@
                         <div class="chart-bars horizontal">
                             <div class="entry">
                                 <span class="name">TypeScript</span>
-                                <div class="bar" style="width: 10.520644080847138%; background-color: var(--color-calendar-graph-day-L1-bg)"></div>
+                                <div class="bar" style="width: 10.343704989745412%; background-color: var(--color-calendar-graph-day-L1-bg)"></div>
                                 <span class="value">13%</span>
                             </div>
                             <div class="entry">
                                 <span class="name">C#</span>
-                                <div class="bar" style="width: 3.1164785968381947%; background-color: var(--color-calendar-graph-day-L1-bg)"></div>
+                                <div class="bar" style="width: 3.383251771537355%; background-color: var(--color-calendar-graph-day-L1-bg)"></div>
                                 <span class="value">4%</span>
                             </div>
                             <div class="entry">
                                 <span class="name">TSX</span>
-                                <div class="bar" style="width: 1.8903339476613463%; background-color: var(--color-calendar-graph-day-L1-bg)"></div>
-                                <span class="value">2%</span>
+                                <div class="bar" style="width: 2.0288983879968554%; background-color: var(--color-calendar-graph-day-L1-bg)"></div>
+                                <span class="value">3%</span>
                             </div>
                             <div class="entry">
                                 <span class="name">SCSS</span>
-                                <div class="bar" style="width: 0.052076180161608816%; background-color: var(--color-calendar-graph-day-L1-bg)"></div>
-                                <span class="value">0%</span>
-                            </div>
-                            <div class="entry">
-                                <span class="name">Dockerfile</span>
-                                <div class="bar" style="width: 0.0054064353148354765%; background-color: var(--color-calendar-graph-day-L1-bg)"></div>
+                                <div class="bar" style="width: 0.05342893237273591%; background-color: var(--color-calendar-graph-day-L1-bg)"></div>
                                 <span class="value">0%</span>
                             </div>
                             <div class="entry">
                                 <span class="name">TSQL</span>
-                                <div class="bar" style="width: 0.005092513264296643%; background-color: var(--color-calendar-graph-day-L1-bg)"></div>
+                                <div class="bar" style="width: 0.005528436659404282%; background-color: var(--color-calendar-graph-day-L1-bg)"></div>
+                                <span class="value">0%</span>
+                            </div>
+                            <div class="entry">
+                                <span class="name">Dockerfile</span>
+                                <div class="bar" style="width: 0.0029535483522844797%; background-color: var(--color-calendar-graph-day-L1-bg)"></div>
                                 <span class="value">0%</span>
                             </div>
                         </div>
