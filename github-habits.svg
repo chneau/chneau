@@ -195,37 +195,37 @@
                         <div class="chart-bars horizontal">
                             <div class="entry">
                                 <span class="name">TypeScript</span>
-                                <div class="bar" style="width: 40.23360047186472%; background-color: var(--color-calendar-graph-day-L3-bg)"></div>
-                                <span class="value">50%</span>
-                            </div>
-                            <div class="entry">
-                                <span class="name">JavaScript</span>
-                                <div class="bar" style="width: 3.001553449996399%; background-color: var(--color-calendar-graph-day-L1-bg)"></div>
-                                <span class="value">4%</span>
-                            </div>
-                            <div class="entry">
-                                <span class="name">TSX</span>
-                                <div class="bar" style="width: 0.8520999008946911%; background-color: var(--color-calendar-graph-day-L1-bg)"></div>
-                                <span class="value">1%</span>
+                                <div class="bar" style="width: 41.5145438833469%; background-color: var(--color-calendar-graph-day-L3-bg)"></div>
+                                <span class="value">52%</span>
                             </div>
                             <div class="entry">
                                 <span class="name">Dockerfile</span>
-                                <div class="bar" style="width: 0.842772342417415%; background-color: var(--color-calendar-graph-day-L1-bg)"></div>
+                                <div class="bar" style="width: 1.0309503234304604%; background-color: var(--color-calendar-graph-day-L1-bg)"></div>
                                 <span class="value">1%</span>
                             </div>
                             <div class="entry">
-                                <span class="name">HTML</span>
-                                <div class="bar" style="width: 0.23812708112575404%; background-color: var(--color-calendar-graph-day-L1-bg)"></div>
-                                <span class="value">0%</span>
+                                <span class="name">TSX</span>
+                                <div class="bar" style="width: 0.9738990360010403%; background-color: var(--color-calendar-graph-day-L1-bg)"></div>
+                                <span class="value">1%</span>
                             </div>
                             <div class="entry">
                                 <span class="name">C#</span>
-                                <div class="bar" style="width: 0.16131189366583337%; background-color: var(--color-calendar-graph-day-L1-bg)"></div>
+                                <div class="bar" style="width: 0.19733033534411154%; background-color: var(--color-calendar-graph-day-L1-bg)"></div>
+                                <span class="value">0%</span>
+                            </div>
+                            <div class="entry">
+                                <span class="name">HTML</span>
+                                <div class="bar" style="width: 0.12148568264382377%; background-color: var(--color-calendar-graph-day-L1-bg)"></div>
+                                <span class="value">0%</span>
+                            </div>
+                            <div class="entry">
+                                <span class="name">JavaScript</span>
+                                <div class="bar" style="width: 0.10369910479818106%; background-color: var(--color-calendar-graph-day-L1-bg)"></div>
                                 <span class="value">0%</span>
                             </div>
                             <div class="entry">
                                 <span class="name">CSS</span>
-                                <div class="bar" style="width: 0.009601898432490081%; background-color: var(--color-calendar-graph-day-L1-bg)"></div>
+                                <div class="bar" style="width: 0.011745853294292355%; background-color: var(--color-calendar-graph-day-L1-bg)"></div>
                                 <span class="value">0%</span>
                             </div>
                         </div>
