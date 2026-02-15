@@ -14,7 +14,7 @@ jobs:
           token: ${{ secrets.METRICS_TOKEN }}
           committer_token: ${{ github.token }}
           user: ${{ github.repository_owner }}
-          base: achievements
+          base: ""
           plugin_achievements: yes
           plugin_achievements_threshold: B # Display achievements with rank B or higher
           plugin_achievements_secrets: yes # Display unlocked secrets achievements
@@ -47,12 +47,12 @@ jobs:
           base: activity, community
           config_timezone: ${{ env.USER_TIMEZONE }}
 
-  iso_calender:
+  iso_calendar:
     runs-on: ubuntu-latest
     steps:
       - uses: lowlighter/metrics@latest
         with:
-          filename: iso_calender.svg
+          filename: iso_calendar.svg
           token: ${{ secrets.METRICS_TOKEN }}
           committer_token: ${{ github.token }}
           user: ${{ github.repository_owner }}
