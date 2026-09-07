@@ -1,7 +1,8 @@
-<a href="https://github.com/chneau">
-  <img align="center" width="49%" src="./header.svg" />
-  <img align="center" src="https://komarev.com/ghpvc/?username=chneau&style=flat-square" />
-  <br />
-  <img align="center" width="49%" src="./repositories.svg" />
-  <img align="center" width="49%" src="./acti_comm.svg" />
-</a>
+<p align="center">
+  <img width="100%" src="./header.svg" alt="GitHub Header" />
+  <br /><br />
+  <img width="49%" src="./repositories.svg" alt="Repositories Metrics" />
+  <img width="49%" src="./acti_comm.svg" alt="Activity & Community Metrics" />
+  <br /><br />
+  <img src="https://komarev.com/ghpvc/?username=chneau&style=flat-square" alt="Profile Views" />
+</p>
