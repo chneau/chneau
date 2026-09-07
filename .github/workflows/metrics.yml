@@ -1,11 +1,11 @@
 on:
   workflow_dispatch:
-  schedule: [{ cron: 0 */3 * * * }]
+  schedule: [{ cron: "0 0 * * *" }]
 
 env: { USER_TIMEZONE: Europe/London }
 
 jobs:
-  github-metrics:
+  metrics:
     runs-on: ubuntu-latest
     steps:
       - uses: lowlighter/metrics@latest
@@ -18,9 +18,6 @@ jobs:
           base: header
           config_timezone: ${{ env.USER_TIMEZONE }}
 
-  acti_comm:
-    runs-on: ubuntu-latest
-    steps:
       - uses: lowlighter/metrics@latest
         with:
           filename: acti_comm.svg
@@ -31,9 +28,6 @@ jobs:
           base: activity, community
           config_timezone: ${{ env.USER_TIMEZONE }}
 
-  repositories:
-    runs-on: ubuntu-latest
-    steps:
       - uses: lowlighter/metrics@latest
         with:
           filename: repositories.svg
